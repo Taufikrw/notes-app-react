@@ -7,6 +7,7 @@ class NotesForm extends React.Component {
         this.state = {
             title: '',
             body: '',
+            titleLength: 0,
         };
 
         this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
@@ -15,11 +16,14 @@ class NotesForm extends React.Component {
     }
 
     onTitleChangeEventHandler(event) {
-        this.setState(() => {
-            return {
-                title: event.target.value
-            };
-        });
+        if (event.target.value.length <= 50) {
+            this.setState(() => {
+                return {
+                    title: event.target.value,
+                    titleLength: event.target.value.length
+                };
+            });
+        }
     }
 
     onBodyChangeEventHandler(event) {
@@ -38,9 +42,11 @@ class NotesForm extends React.Component {
     render() {
         return (
             <form className="notes-input" onSubmit={this.onSubmitEventHandler}>
-                <input type="text" placeholder="Title" value={this.state.title} onChange={this.onTitleChangeEventHandler} />
-                <input type="text" placeholder="Body" value={this.state.body} onChange={this.onBodyChangeEventHandler} />
-                <button type="submit">Submit</button>
+                <p className="char-left">Char left: {50 - this.state.titleLength}</p>
+                <input className="title-form" type="text" placeholder="Title" value={this.state.title}
+                       onChange={this.onTitleChangeEventHandler}/>
+                <input className="body-form" type="text" placeholder="Body" value={this.state.body} onChange={this.onBodyChangeEventHandler}/>
+                <button className="submit-button" type="submit">Submit</button>
             </form>
         )
     }

@@ -34,7 +34,7 @@ class NotesApp extends React.Component {
         }
     }
 
-    onAddNotesHandler({ title, body }) {
+    onAddNotesHandler({title, body}) {
         this.setState((prevState) => {
             return {
                 notes: [
@@ -56,7 +56,7 @@ class NotesApp extends React.Component {
             <div className="notes-app">
                 <h1>Notes App</h1>
                 <h2>Add Notes</h2>
-                <NotesForm addNotes={this.onAddNotesHandler} />
+                <NotesForm addNotes={this.onAddNotesHandler}/>
                 <h2>Your Notes</h2>
                 <NotesCard notes={this.state.notes} onDelete={this.onDeleteEventHandler}
                            onArchive={this.onArchiveEventHandler}/>
@@ -64,7 +64,8 @@ class NotesApp extends React.Component {
                 <h1>Archive Notes</h1>
                 {
                     this.state.archiveNotes.length > 0 ? (
-                        <NotesCard notes={this.state.archiveNotes} onDelete={this.onDeleteEventHandler} onArchive={this.onArchiveEventHandler}/>
+                        <NotesCard notes={this.state.archiveNotes} onDelete={this.onDeleteEventHandler}
+                                   onArchive={this.onArchiveEventHandler}/>
                     ) : (
                         <p>No Data</p>
                     )
