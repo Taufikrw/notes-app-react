@@ -1,6 +1,7 @@
 import React from 'react';
 import {getData} from "../utils/data.js";
 import NotesCard from "./NotesCard.jsx";
+import NotesForm from "./NotesForm.jsx";
 
 class NotesApp extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class NotesApp extends React.Component {
 
         this.onDeleteEventHandler = this.onDeleteEventHandler.bind(this);
         this.onArchiveEventHandler = this.onArchiveEventHandler.bind(this);
+        this.onAddNotesHandler = this.onAddNotesHandler.bind(this);
     }
 
     onDeleteEventHandler(id) {
@@ -32,10 +34,29 @@ class NotesApp extends React.Component {
         }
     }
 
+    onAddNotesHandler({ title, body }) {
+        this.setState((prevState) => {
+            return {
+                notes: [
+                    ...prevState.notes,
+                    {
+                        id: +new Date(),
+                        title,
+                        body,
+                        createdAt: +new Date(),
+                        archived: false,
+                    }
+                ]
+            }
+        })
+    }
+
     render() {
         return (
             <div className="notes-app">
                 <h1>Notes App</h1>
+                <h2>Add Notes</h2>
+                <NotesForm addNotes={this.onAddNotesHandler} />
                 <h2>Your Notes</h2>
                 <NotesCard notes={this.state.notes} onDelete={this.onDeleteEventHandler}
                            onArchive={this.onArchiveEventHandler}/>
