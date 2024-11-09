@@ -3,6 +3,7 @@ import {getData} from "../utils/data.js";
 import NotesCard from "./NotesCard.jsx";
 import NotesForm from "./NotesForm.jsx";
 import SearchForm from "./SearchForm.jsx";
+import TopBar from "./TopBar.jsx";
 
 class NotesApp extends React.Component {
     constructor(props) {
@@ -79,23 +80,26 @@ class NotesApp extends React.Component {
 
         return (
             <div className="notes-app">
-                <h1>Notes App</h1>
-                <SearchForm search={this.state.search} onSearch={this.onSearchHandler}/>
-                <h2>Add Notes</h2>
+                <TopBar search={this.state.search} onSearch={this.onSearchHandler}/>
                 <NotesForm addNotes={this.onAddNotesHandler}/>
-                <h2>Your Notes</h2>
-                <NotesCard notes={filteredNotes} onDelete={this.onDeleteEventHandler}
-                           onArchive={this.onArchiveEventHandler}/>
-                <hr/>
-                <h1>Archive Notes</h1>
-                {
-                    this.state.archiveNotes.length > 0 ? (
+                <h2 className="section-header">Your Notes</h2>
+                {filteredNotes.length > 0 ? (
+                    <div className="notes-grid">
+                        <NotesCard notes={filteredNotes} onDelete={this.onDeleteEventHandler}
+                                   onArchive={this.onArchiveEventHandler}/>
+                    </div>
+                ) : (
+                    <p className="no-data">No Data</p>
+                )}
+                <h2 className="section-header">Archive Notes</h2>
+                {this.state.archiveNotes.length > 0 ? (
+                    <div className="notes-grid">
                         <NotesCard notes={this.state.archiveNotes} onDelete={this.onDeleteEventHandler}
                                    onArchive={this.onUnarchiveEventHandler}/>
-                    ) : (
-                        <p>No Data</p>
-                    )
-                }
+                    </div>
+                ) : (
+                    <p className="no-data">No Data</p>
+                )}
             </div>
         )
     }

@@ -1,0 +1,175 @@
+* {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.top-bar h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    right: 40px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid #ced4da;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.section-header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.no-data {
+    text-align: center;
+    padding: 30px;
+    font-size: 16px;
+}
+
+.notes-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.notes-form input,
+.notes-form textarea,
+.notes-form button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.notes-form textarea {
+    height: 120px;
+}
+
+.notes-form button {
+    border: 1px solid transparent;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.notes-form button:hover {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+}
+
+.title-container {
+    position: relative;
+}
+
+.title-container input {
+    width: 100%;
+    padding-right: 50px;
+}
+
+.char-left {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px 40px;
+}
+
+.notes-card {
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #333;
+    height: 300px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.notes-card:hover {
+    transform: scale(1.05);
+    border-color: #fff;
+    background-color: #333;
+    color: #fff;
+}
+
+.notes-card h3 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.notes-card p {
+    font-size: 16px;
+}
+
+.notes-card .button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.notes-card button {
+    border: 2px solid #333;
+    width: 100%;
+    background-color: transparent;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.notes-card:hover button {
+    background-color: #fff; /* Ensure button background does not change on card hover */
+    color: #333; /* Ensure button text color does not change on card hover */
+    border-color: #333; /* Ensure button border color does not change on card hover */
+}

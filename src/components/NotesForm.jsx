@@ -41,12 +41,24 @@ class NotesForm extends React.Component {
 
     render() {
         return (
-            <form className="notes-input" onSubmit={this.onSubmitEventHandler}>
-                <p className="char-left">Char left: {50 - this.state.titleLength}</p>
-                <input className="title-form" type="text" placeholder="Title" value={this.state.title}
-                       onChange={this.onTitleChangeEventHandler}/>
-                <input className="body-form" type="text" placeholder="Body" value={this.state.body} onChange={this.onBodyChangeEventHandler}/>
-                <button className="submit-button" type="submit">Submit</button>
+            <form className="notes-form" onSubmit={this.onSubmitEventHandler}>
+                <div className="title-container">
+                    <input
+                        type="text"
+                        placeholder="Title"
+                        value={this.state.title}
+                        onChange={this.onTitleChangeEventHandler}
+                        required
+                    />
+                    <span className="char-left">{50 - this.state.titleLength}</span>
+                </div>
+                <textarea
+                    placeholder="Body"
+                    value={this.state.body}
+                    onChange={this.onBodyChangeEventHandler}
+                    required
+                />
+                <button type="submit">Add a Note</button>
             </form>
         )
     }
