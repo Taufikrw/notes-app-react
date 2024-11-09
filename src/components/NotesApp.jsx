@@ -14,6 +14,7 @@ class NotesApp extends React.Component {
 
         this.onDeleteEventHandler = this.onDeleteEventHandler.bind(this);
         this.onArchiveEventHandler = this.onArchiveEventHandler.bind(this);
+        this.onUnarchiveEventHandler = this.onUnarchiveEventHandler.bind(this);
         this.onAddNotesHandler = this.onAddNotesHandler.bind(this);
     }
 
@@ -30,6 +31,17 @@ class NotesApp extends React.Component {
             note.archived = true;
             const notes = this.state.notes.filter(note => note.id !== id);
             const archiveNotes = [...this.state.archiveNotes, note];
+            this.setState({notes, archiveNotes})
+        }
+    }
+
+    onUnarchiveEventHandler(id) {
+        const note = this.state.archiveNotes.find(note => note.id === id);
+
+        if (note) {
+            note.archived = false;
+            const archiveNotes = this.state.archiveNotes.filter(note => note.id !== id);
+            const notes = [...this.state.notes, note];
             this.setState({notes, archiveNotes})
         }
     }
@@ -65,7 +77,7 @@ class NotesApp extends React.Component {
                 {
                     this.state.archiveNotes.length > 0 ? (
                         <NotesCard notes={this.state.archiveNotes} onDelete={this.onDeleteEventHandler}
-                                   onArchive={this.onArchiveEventHandler}/>
+                                   onArchive={this.onUnarchiveEventHandler}/>
                     ) : (
                         <p>No Data</p>
                     )
