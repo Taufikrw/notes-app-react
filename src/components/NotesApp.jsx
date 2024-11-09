@@ -2,6 +2,7 @@ import React from 'react';
 import {getData} from "../utils/data.js";
 import NotesCard from "./NotesCard.jsx";
 import NotesForm from "./NotesForm.jsx";
+import SearchForm from "./SearchForm.jsx";
 
 class NotesApp extends React.Component {
     constructor(props) {
@@ -10,12 +11,14 @@ class NotesApp extends React.Component {
         this.state = {
             notes: getData(),
             archiveNotes: [],
+            search: "",
         }
 
         this.onDeleteEventHandler = this.onDeleteEventHandler.bind(this);
         this.onArchiveEventHandler = this.onArchiveEventHandler.bind(this);
         this.onUnarchiveEventHandler = this.onUnarchiveEventHandler.bind(this);
         this.onAddNotesHandler = this.onAddNotesHandler.bind(this);
+        this.onSearchHandler = this.onSearchHandler.bind(this);
     }
 
     onDeleteEventHandler(id) {
@@ -63,14 +66,25 @@ class NotesApp extends React.Component {
         })
     }
 
+    // make search functionality in search form
+    onSearchHandler(e) {
+        this.setState({search: e.target.value});
+    }
+
     render() {
+        const filteredNotes = this.state.notes.filter(note =>
+            note.title.toLowerCase().includes(this.state.search.toLowerCase()) ||
+            note.body.toLowerCase().includes(this.state.search.toLowerCase())
+        );
+
         return (
             <div className="notes-app">
                 <h1>Notes App</h1>
+                <SearchForm search={this.state.search} onSearch={this.onSearchHandler}/>
                 <h2>Add Notes</h2>
                 <NotesForm addNotes={this.onAddNotesHandler}/>
                 <h2>Your Notes</h2>
-                <NotesCard notes={this.state.notes} onDelete={this.onDeleteEventHandler}
+                <NotesCard notes={filteredNotes} onDelete={this.onDeleteEventHandler}
                            onArchive={this.onArchiveEventHandler}/>
                 <hr/>
                 <h1>Archive Notes</h1>
