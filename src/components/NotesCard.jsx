@@ -1,5 +1,6 @@
 import React from 'react';
-import NotesItem from "./NotesItem.jsx";
+import {Link} from "react-router-dom";
+
 
 function NotesCard({ notes, onDelete, onArchive }) {
     return (
@@ -9,6 +10,11 @@ function NotesCard({ notes, onDelete, onArchive }) {
                     <h3>{note.title}</h3>
                     <p>{note.body}</p>
                     <div className="button-container">
+                        {
+                            !note.archived ? (
+                                <Link to={`/notes/${note.id}`}><button className="link-button">View</button></Link>
+                            ) : null
+                        }
                         <button onClick={() => onDelete(note.id)}>Delete</button>
                         <button onClick={() => onArchive(note.id)}>{note.archived ? 'Unarchive' : 'Archive'}</button>
                     </div>

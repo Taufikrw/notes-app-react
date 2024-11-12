@@ -1,17 +1,11 @@
 import React from "react";
+import Navigation from "./Navigation";
 
-function TopBar({ search, onSearch }) {
+function TopBar() {
     return (
         <div className="top-bar">
             <h1>Notes App</h1>
-            <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Search notes..."
-                    value={search}
-                    onChange={onSearch}
-                />
-            </div>
+            <Navigation />
         </div>
     );
 }

@@ -19,8 +19,7 @@ class NotesForm extends React.Component {
         if (event.target.value.length <= 50) {
             this.setState(() => {
                 return {
-                    title: event.target.value,
-                    titleLength: event.target.value.length
+                    title: event.target.value
                 };
             });
         }
@@ -42,7 +41,7 @@ class NotesForm extends React.Component {
     render() {
         return (
             <form className="notes-form" onSubmit={this.onSubmitEventHandler}>
-                <div className="title-container">
+                <div className="form-container">
                     <input
                         type="text"
                         placeholder="Title"
@@ -50,14 +49,17 @@ class NotesForm extends React.Component {
                         onChange={this.onTitleChangeEventHandler}
                         required
                     />
-                    <span className="char-left">{50 - this.state.titleLength}</span>
+                    <span className="char-left">{50 - this.state.title.length}</span>
                 </div>
-                <textarea
-                    placeholder="Body"
-                    value={this.state.body}
-                    onChange={this.onBodyChangeEventHandler}
-                    required
-                />
+                <div className="form-container">
+                    <textarea
+                        placeholder="Body"
+                        value={this.state.body}
+                        onChange={this.onBodyChangeEventHandler}
+                        required
+                    />
+                    <span className="body-count">{this.state.body.length}</span>
+                </div>
                 <button type="submit">Add a Note</button>
             </form>
         )
