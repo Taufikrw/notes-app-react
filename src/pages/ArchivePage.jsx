@@ -11,7 +11,8 @@ function ArchivePageWrapper() {
     function changeSearchParams(keyword) {
         setSearchParams({keyword});
     }
-    return <ArchivePage defaultKeyword={keyword} keywordChange={changeSearchParams} />;
+
+    return <ArchivePage defaultKeyword={keyword} keywordChange={changeSearchParams}/>;
 }
 
 class ArchivePage extends React.Component {
@@ -58,11 +59,16 @@ class ArchivePage extends React.Component {
 
         return (
             <section>
-                <SearchForm keyword={this.state.keyword} keywordChange={this.onKeywordChangeHandler} />
+                <SearchForm keyword={this.state.keyword} keywordChange={this.onKeywordChangeHandler}/>
                 <h2 className="section-header">Archive Notes</h2>
-                <div className="notes-grid">
-                    <NotesCard notes={notes} onDelete={this.onDeleteEventHandler} onArchive={this.onUnarchiveEventHandler} />
-                </div>
+                {(notes.length > 0) ? (
+                    <div className="notes-grid">
+                        <NotesCard notes={notes} onDelete={this.onDeleteEventHandler}
+                                   onArchive={this.onUnarchiveEventHandler}/>
+                    </div>
+                ) : (
+                    <p className="no-data">Nothing to see</p>
+                )}
             </section>
         );
     }
