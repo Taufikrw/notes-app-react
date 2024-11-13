@@ -29,7 +29,7 @@ class NotesForm extends React.Component {
     onBodyChangeEventHandler(event) {
         this.setState(() => {
             return {
-                body: event.target.value
+                body: event.target.innerHTML
             }
         })
     }
@@ -53,11 +53,10 @@ class NotesForm extends React.Component {
                     <span className="char-left">{50 - this.state.title.length}</span>
                 </div>
                 <div className="form-container">
-                    <textarea
-                        placeholder="Body"
-                        value={this.state.body}
-                        onChange={this.onBodyChangeEventHandler}
-                        required
+                    <div
+                        className="textarea-container"
+                        onInput={this.onBodyChangeEventHandler}
+                        contentEditable
                     />
                     <span className="body-count">{this.state.body.length}</span>
                 </div>

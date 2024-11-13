@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import parser from 'html-react-parser';
 
 function NotesCard({ notes, onDelete, onArchive }) {
     return (
@@ -7,7 +8,7 @@ function NotesCard({ notes, onDelete, onArchive }) {
             {notes.map((note) => (
                 <div key={note.id} className="notes-card">
                     <h3>{note.title}</h3>
-                    <p>{note.body}</p>
+                    <p>{parser(note.body)}</p>
                     <div className="button-container">
                         {
                             !note.archived ? (

@@ -79,7 +79,7 @@
 }
 
 .notes-form input,
-.notes-form textarea,
+.notes-form .textarea-container,
 .notes-form button {
     width: 100%;
     box-sizing: border-box;
@@ -90,8 +90,9 @@
     transition: all 0.3s ease;
 }
 
-.notes-form textarea {
+.notes-form .textarea-container {
     height: 120px;
+    background-color: #fff;
 }
 
 .notes-form button {
@@ -203,4 +204,44 @@
     justify-content: center;
     font-size: 24px;
     text-decoration: none;
+}
+
+.not-found {
+    text-align: center;
+    padding: 30px;
+    font-size: 20px;
+}
+
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    gap: 20px;
+}
+
+.detail-action {
+    display: flex;
+    gap: 10px;
+    margin: -20px 40px;
+}
+
+.detail-action button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.detail-action button:hover {
+    border: 2px solid #333;
+    background-color: transparent;
+    color: #333;
 }
