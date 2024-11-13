@@ -2,7 +2,8 @@ import React from "react";
 import {archiveNotes, deleteNotes, getNotes} from "../utils/data.js";
 import NotesCard from "../components/NotesCard.jsx";
 import SearchForm from "../components/SearchForm.jsx";
-import {useSearchParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
+import {MdAddCircleOutline} from "react-icons/md";
 
 function HomePageWrapper() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -11,7 +12,8 @@ function HomePageWrapper() {
     function changeSearchParams(keyword) {
         setSearchParams({keyword});
     }
-    return <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />;
+
+    return <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams}/>;
 }
 
 class HomePage extends React.Component {
@@ -58,11 +60,20 @@ class HomePage extends React.Component {
 
         return (
             <section>
-                <SearchForm keyword={this.state.keyword} keywordChange={this.onKeywordChangeHandler} />
+                <SearchForm keyword={this.state.keyword} keywordChange={this.onKeywordChangeHandler}/>
                 <h2 className="section-header">My Notes</h2>
-                <div className="notes-grid">
-                    <NotesCard notes={notes} onDelete={this.onDeleteEventHandler} onArchive={this.onArchiveEventHandler} />
-                </div>
+                {notes.length > 0 ? (
+                    <div className="notes-grid">
+                        <NotesCard notes={notes} onDelete={this.onDeleteEventHandler}
+                                   onArchive={this.onArchiveEventHandler}/>
+                        {(this.state.keyword === '') ?
+                            <Link to="/add" className="notes-card add-button"><MdAddCircleOutline/> Add
+                                Note</Link> : null
+                        }
+                    </div>
+                ) : (
+                    <p className="no-data">No Data</p>
+                )}
             </section>
         );
     }

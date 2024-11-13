@@ -195,3 +195,12 @@
     color: #333; /* Ensure button text color does not change on card hover */
     border-color: #333; /* Ensure button border color does not change on card hover */
 }
+
+.add-button {
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    text-decoration: none;
+}
