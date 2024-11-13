@@ -1,18 +1,24 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import parser from 'html-react-parser';
+import {showFormattedDate} from "../utils/formattedDate.js";
 
-function NotesCard({ notes, onDelete, onArchive }) {
+function NotesCard({notes, onDelete, onArchive}) {
     return (
         <>
             {notes.map((note) => (
                 <div key={note.id} className="notes-card">
                     <h3>{note.title}</h3>
-                    <p>{parser(note.body)}</p>
+                    <div className="notes-card__body">
+                        <span>{showFormattedDate(note.createdAt)}</span>
+                        <p>{parser(note.body)}</p>
+                    </div>
                     <div className="button-container">
                         {
                             !note.archived ? (
-                                <Link to={`/notes/${note.id}`}><button className="link-button">View</button></Link>
+                                <Link to={`/notes/${note.id}`}>
+                                    <button className="link-button">View</button>
+                                </Link>
                             ) : null
                         }
                         <button onClick={() => onDelete(note.id)}>Delete</button>

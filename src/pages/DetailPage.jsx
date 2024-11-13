@@ -3,6 +3,7 @@ import {archiveNotes, deleteNotes, getNoteById, getNotes} from "../utils/data.js
 import {useNavigate, useParams} from "react-router-dom";
 import parser from "html-react-parser";
 import {MdOutlineRemoveCircleOutline, MdOutlineArchive } from "react-icons/md";
+import {showFormattedDate} from "../utils/formattedDate.js";
 
 function DetailPageWrapper() {
     const {id} = useParams()
@@ -49,6 +50,7 @@ class DetailPage extends React.Component {
                 <div className="detail-container">
                     <h1>{this.state.note.title}</h1>
                     <p>{parser(this.state.note.body)}</p>
+                    <span>Created at {showFormattedDate(this.state.note.createdAt)}</span>
                 </div>
                 <div className="detail-action">
                     <button onClick={() => this.onDeleteEventHandler(this.state.note.id)}><MdOutlineRemoveCircleOutline />Delete</button>
