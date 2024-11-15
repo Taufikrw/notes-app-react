@@ -59,6 +59,13 @@ function addNotes(note) {
     notes = [...notes, { id: +new Date(), createdAt: new Date(), archived: false, ...note }];
 }
 
+function editNote({id, body}) {
+    const noteToEdit = notes.find((n) => n.id === id);
+    if (noteToEdit) {
+        noteToEdit.body = body;
+    }
+}
+
 function deleteNotes(id) {
     notes = notes.filter((note) => note.id !== id);
 }
@@ -81,4 +88,4 @@ function getArchiveNotes() {
     return notes.filter((note) => note.archived);
 }
 
-export { getNotes, getNoteById, addNotes, deleteNotes, archiveNotes, unarchiveNotes, getArchiveNotes };
+export { getNotes, getNoteById, addNotes, editNote, deleteNotes, archiveNotes, unarchiveNotes, getArchiveNotes };
